@@ -52,9 +52,26 @@
 		errors: {
 			match: 'Velden komen niet overeen',
 			minlength: 'Niet lang genoeg',
+			maximum: 'Waarde is te groot',
+			minimum: 'Waarde is niet groot genoeg',
 			email: 'Geef een geldig e-mail adres. Bijvoorbeeld fred@domain.com',
 			req: 'Dit is een verplicht veld',
-			onereq: 'Kies een van bovenstaande opties'
+			onereq: 'Kies een van bovenstaande opties',
+			number: 'Voer een geldig nummer in',
+			postal: 'Deze postcode is niet goed. Gebruik geen spatie. Bijvoorbeeld 1234AB',
+			digits: 'Gebruik alleen cijfers. Punten, komma\'s en streepjes zijn niet toegestaan.',
+			alpha: 'Gebruik alleen letters (a-z).',
+			alphanum: 'Gebruik alleen letters (a-z) of cijfers (0-9). Spaties of andere tekens zijn niet toegestaan.',
+			date: 'Geef een geldige datum op (dd-mm-yyyy).',
+			phone: 'Geef een geldig telefoonnummer. Gebruik alleen cijfers, bijvoorbeeld 0101245678.',
+			url: 'Geef een geldige URL',
+			bsn: 'Dit burgerservicenummer is niet goed',
+			ip: 'Dit ip-adres is niet goed',
+			amount: 'Dit bedrag is niet goed',
+			domesticaccountnr: 'Dit bankrekeningnummer is niet goed',
+			iban: 'Dit bankrekeningnummer is niet goed',
+			jpg: 'Alleen .jpg bestanden zijn toegestaan',
+			selection: 'Maak een keuze'
 		}
 	}
 
@@ -71,8 +88,13 @@
 			var minlength = $el.data('minlength');
 			return !$el.val() || $el.val().length >= minlength;
 		},
-		email: function ($el) {
-			return !$el.val() || /\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/.test($el.val());
+		minimum: function ($el) {
+			var min = $el.data('minimum');
+			return !$el.val() || $el.val() >= parseFloat(min);
+		},
+		maximum: function ($el) {
+			var max = $el.data('maximum');
+			return !$el.val() || $el.val() <= parseFloat(max);
 		},
 		req: function($el) {
 			if ($el.attr('type') == 'checkbox') {
@@ -81,6 +103,51 @@
 				return !!$.trim($el.val());
 			}
 		},
+		jpg: function($el) {
+			var v = $el.val();
+			var lastPoint = v.lastIndexOf(".");
+			var ext = v.substring(lastPoint+1).toLowerCase();
+			return (ext == "jpg");
+		},
+		number: function($el) {
+			return !$el.val() || (!isNaN($el.val()) && !/^\s+$/.test($el.val()));
+		},
+		postal: function($el) {
+			return !$el.val() || /^\d{4}[a-zA-Z]{2}$/.test($el.val());
+		},
+		digits: function($el) {
+			return !$el.val() || !/[^\d]/.test($el.val());
+		},
+		alpha: function($el) {
+			return !$el.val() || /^[a-zA-Z]+$/.test($el.val());
+		},
+		alphanum: function($el) {
+			return !$el.val() || !/\W/.test($el.val());
+		},
+		date: function($el) {
+			var pcFormat = /^(0[1-9]|[12][0-9]|3[01])([-])(0[1-9]|1[012])\2(19|20)\d\d$/;
+			var v = $el.val();
+			if (!pcFormat.test(v)) {
+				return false;
+			} else {
+				var day = v.substr(0,2);
+				var month = v.substr(3,2);
+				var year = v.substr(6,4);
+				if (day > 31 || month > 12) {
+					return false;
+				}
+				return true;
+			}
+		},
+		email: function ($el) {
+			return !$el.val() || /\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/.test($el.val());
+		},
+		phone: function($el) {
+			return !$el.val() || /^(0\d{9})$/.test($el.val());
+		},
+		url: function($el) {
+			return !$el.val() || /^((http|https|ftp):\/\/)?(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\/?/i.test($el.val());
+		},
 		onereq: function($el) {
 			//$el geeft alle radio's in een form-group
 			// var p = $($el.get(0))).parent('.form-group');
@@ -88,7 +155,79 @@
 			return any($el, function(el) {
 				return $(el).prop("checked");
 			});
-		}
+		},
+		bsn: function($el) {
+			var v = $el.val();
+			if(!v) return true;
+			var sum = 0;
+			var i =0;
+			for (i = 0; i < v.length; i++) {
+				if (i == (v.length - 1)) {
+					sum = sum - 1 * v.charAt(i);
+				} else {
+					sum = sum + (9 - i) * v.charAt(i);
+				}
+			}
+			if ((sum % 11) != 0 ) {
+				return false;
+			}
+			return true;
+		},
+		ip: function($el) {
+			return !$el.val() || /^\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b$/.test($el.val());
+		},
+		amount: function($el) {
+			return !$el.val() || /^([0-9])+([,][0-9]{2})?$/.test($el.val());
+		},
+		domesticaccountnr: function($el) {
+			// var v = $el.val();
+			// v = v.replace(/\./g, "");
+			// return !$el.val() || (/^([1-9][0-9]{1,9})?$/.test(v) || v.length <= 10);
+
+			var v = $el.val().replace(/\./g, "");
+			if (!/^([1-9][0-9]{1,9})?$/.test(v) || v.length > 10) {
+				return false;
+			}
+			return true;
+
+		},
+		iban: function($el) {
+			var v = $el.val().replace(/\./g, "");
+			//Je kunt dynamisch data-domesticaccountnr vervangen door data-iban afh van payMethod!!!!
+			var payMethod = document.getElementById('payMethod').value;
+			if (payMethod == 'IDEAL' || payMethod == 'overschrijving'){
+				var newIban = v.toUpperCase(),
+					modulo = function (divident, divisor) {
+						var m = 0;
+						for (var i = 0; i < divident.length; ++i)
+						m = (m * 10 + parseInt(divident.charAt(i))) % divisor;
+						return m;
+					};
+
+				if (newIban.search(/^[A-Z]{2}/gi) < 0) {
+					return false;
+				}
+
+				newIban = newIban.substring(4) + newIban.substring(0, 4);
+
+				newIban = newIban.replace(/[A-Z]/g, function (match) {
+					return match.charCodeAt(0) - 55;
+				});
+
+				return parseInt(modulo(newIban, 97), 10) === 1;
+
+			} else {
+				if (!/^([1-9][0-9]{1,9})?$/.test(v) || v.length > 10) {
+					return false;
+				}
+				return true;
+			}
+		},
+		selection: function($el) {
+			var elm = $el.get(0);
+			return elm.options ? elm.selectedIndex > 0 : !$el.val();
+		},
+
 	}
 
 	Validator.prototype.validateInput = function (e) {

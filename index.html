@@ -37,7 +37,17 @@
 					<span class="help-block with-errors">Up to 20 letters, numbers and underscores</span>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail" class="control-label">Email</label>
+					<label for="minimum" class="control-label">minimum 5</label>
+					<input type="text" class="form-control" id="minimum" data-minimum='5'>
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="maximum" class="control-label">maximum 5</label>
+					<input type="text" class="form-control" id="maximum" data-maximum='5'>
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail" class="control-label">Email native</label>
 					<input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" data-req="req">
 					<div class="help-block with-errors"></div>
 				</div>
@@ -82,6 +92,86 @@
 						</label>
 						<div class="help-block with-errors"></div>
 					</div>
+				</div>
+				<div class="form-group">
+					<label for="number" class="control-label">Number</label>
+					<input class="form-control" data-number="number" id="number" placeholder="Number" data-req="req">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="postal" class="control-label">Postal</label>
+					<input class="form-control" data-postal="postal" id="postal" data-req="req">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="digits" class="control-label">Digits</label>
+					<input class="form-control" data-digits="digits" id="digits" data-req="req">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="alpha" class="control-label">Alpha</label>
+					<input class="form-control" data-alpha="alpha" id="alpha" data-req="req">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="date" class="control-label">Date</label>
+					<input class="form-control" data-date="date" id="date" data-req="req">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="phone" class="control-label">Phone</label>
+					<input class="form-control" data-phone="phone" id="phone" data-req="req">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="url" class="control-label">Url</label>
+					<input class="form-control" data-url="url" id="url" data-req="req">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="bsn" class="control-label">Bsn</label>
+					<input class="form-control" data-bsn="bsn" id="bsn">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="ip" class="control-label">ip-adres</label>
+					<input class="form-control" data-ip="ip" id="ip">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="amount" class="control-label">Amount</label>
+					<input class="form-control" data-amount="amount" id="amount">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="domesticaccountnr" class="control-label">domesticaccountnr</label>
+					<input class="form-control" data-domesticaccountnr="domesticaccountnr" id="domesticaccountnr">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="payMethod" class="control-label">payMethod</label>
+					<input class="form-control" id="payMethod" value="IDEAL">
+				</div>
+				<div class="form-group">
+					<label for="iban" class="control-label">iban</label>
+					<input class="form-control" data-iban="iban" id="iban">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="jpg" class="control-label">jpg</label>
+					<input type="file"  data-jpg="jpg" id="jpg">
+					<div class="help-block with-errors"></div>
+				</div>
+				<div class="form-group">
+					<label for="selection" class="control-label">selection</label>
+					<select data-selection="selection" class="form-control" id="selection">
+						<option value="">Maak een keuze...</option>
+						<option value="volvo">Volvo</option>
+						<option value="saab">Saab</option>
+						<option value="mercedes">Mercedes</option>
+						<option value="audi">Audi</option>
+					</select>
+					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Submit</button>
