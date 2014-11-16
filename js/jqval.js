@@ -51,6 +51,8 @@
 		html: false,
 		errors: {
 			match: 'Velden komen niet overeen',
+			notmatch: 'Velden komen overeen',
+			regexp: 'Waarde komt niet overeen met het patroon',
 			minlength: 'Niet lang genoeg',
 			maximum: 'Waarde is te groot',
 			minimum: 'Waarde is niet groot genoeg',
@@ -81,8 +83,16 @@
 			return el.checkValidity ? el.checkValidity() : true;
 		},
 		match: function ($el) {
-			var target = $el.data('match');
+			var target = '#' + $el.data('match');
 			return !$el.val() || $el.val() === $(target).val();
+		},
+		notmatch: function ($el) {
+			var target = '#' + $el.data('notmatch');
+			return !$el.val() || $el.val() !== $(target).val();
+		},
+		regexp: function ($el) {
+			var regexp = new RegExp($el.data('regexp'), 'g');
+			return !$el.val() || regexp.test($el.val());
 		},
 		minlength: function ($el) {
 			var minlength = $el.data('minlength');
