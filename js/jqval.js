@@ -56,6 +56,8 @@
 			minlength: 'Niet lang genoeg',
 			maximum: 'Waarde is te groot',
 			minimum: 'Waarde is niet groot genoeg',
+			//WERKT NIET GOED
+			// minchecked: 'Te weinig opties geselecteerd',
 			email: 'Geef een geldig e-mail adres. Bijvoorbeeld fred@domain.com',
 			req: 'Dit is een verplicht veld',
 			onereq: 'Kies een van bovenstaande opties',
@@ -74,7 +76,8 @@
 			iban: 'Dit bankrekeningnummer is niet goed',
 			jpg: 'Alleen .jpg bestanden zijn toegestaan',
 			selection: 'Maak een keuze'
-		}
+		},
+		formErrorMsg: '.formErrorMsg'
 	}
 
 	Validator.VALIDATORS = {
@@ -113,6 +116,17 @@
 				return !!$.trim($el.val());
 			}
 		},
+		//WERKT NIET GOED
+		// minchecked: function($el) {
+		// 	var p = $el.closest('.form-group');
+		// 	var minchecked = p.data('minchecked');
+		// 	var result = p.find('input:checked');
+		// 	console.log('========================');
+		// 	console.log(minchecked);
+		// 	console.log(result.length);
+		// 	console.log(result && result.length >= minchecked);
+		// 	return result && (result.length >= minchecked);
+		// },
 		jpg: function($el) {
 			var v = $el.val();
 			var lastPoint = v.lastIndexOf(".");
@@ -334,6 +348,7 @@
 			$block.empty().append(errors);
 
 			$group.addClass('has-error');
+
 		});
 	}
 
@@ -372,6 +387,8 @@
 		var $btn = this.$element.find('input[type="submit"], button[type="submit"]');
 		$btn.toggleClass('disabled', this.isIncomplete() || this.hasErrors())
 			.css({'pointer-events': 'all', 'cursor': 'pointer'});
+
+		this.showFormError($btn.hasClass('disabled'));
 	}
 
 	Validator.prototype.defer = function ($el, callback) {
@@ -404,6 +421,11 @@
 		this.$element.find('.has-error').removeClass('has-error');
 
 		return this;
+	}
+
+	Validator.prototype.showFormError = function (hasErr) {
+		(this.$element).find(this.options.formErrorMsg).toggleClass('hidden', !hasErr);
+		return;
 	}
 
 	// VALIDATOR PLUGIN DEFINITION

@@ -23,6 +23,7 @@
 			<p>Add validation to your forms with this simple plugin.</p>
 
 			<form data-toggle="validator" role="form">
+				<div class="formErrorMsg text-danger hidden"><strong>Er zitten fouten in het formulier</strong></div>
 				<div class="form-group">
 					<label for="inputName" class="control-label">Req</label>
 					<input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" data-req="req">
@@ -87,6 +88,7 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="control-label">Onereq</label>
 					<div class="radio">
 						<label>
 							<input type="radio" name="underwear" data-onereq="onereq">
@@ -102,6 +104,7 @@
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
+					<label class="control-label">Req (checkbox) and custom data-error</label>
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" id="terms" data-error="Before you wreck yourself" data-req="req">
@@ -110,6 +113,26 @@
 						<div class="help-block with-errors"></div>
 					</div>
 				</div>
+<!-- WERKT NIET GOED
+				<div class="form-group" data-minchecked='2'>
+					<label class="control-label">Req (checkbox) and custom data-error</label>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" data-minchecked="minchecked">
+							Rood
+						</label>
+						<label>
+							<input type="checkbox" data-minchecked="minchecked">
+							Groen
+						</label>
+						<label>
+							<input type="checkbox" data-minchecked="minchecked">
+							Blauw
+						</label>
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+-->
 				<div class="form-group">
 					<label for="number" class="control-label">Number</label>
 					<input class="form-control" data-number="number" id="number" placeholder="Number" data-req="req">
