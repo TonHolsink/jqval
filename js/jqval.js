@@ -74,7 +74,7 @@
 			amount: 'Dit bedrag is niet goed',
 			domesticaccountnr: 'Dit bankrekeningnummer is niet goed',
 			iban: 'Dit bankrekeningnummer is niet goed',
-			jpg: 'Alleen .jpg bestanden zijn toegestaan',
+			ext: 'Het bestandstype is niet toegestaan',
 			selection: 'Maak een keuze'
 		},
 		formErrorMsg: '.formErrorMsg'
@@ -127,11 +127,12 @@
 		// 	console.log(result && result.length >= minchecked);
 		// 	return result && (result.length >= minchecked);
 		// },
-		jpg: function($el) {
+		ext: function($el) {
+			var allowed = $el.data('ext').split(/\s/);
 			var v = $el.val();
 			var lastPoint = v.lastIndexOf(".");
 			var ext = v.substring(lastPoint+1).toLowerCase();
-			return (ext == "jpg");
+			return ($.inArray(ext, allowed) > -1);
 		},
 		number: function($el) {
 			return !$el.val() || (!isNaN($el.val()) && !/^\s+$/.test($el.val()));
