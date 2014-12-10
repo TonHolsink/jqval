@@ -23,6 +23,10 @@
 		return result;
 	};
 
+	function isEmpty(v) {
+		return ((v == null) || (v.length == 0)); // || /^\s+$/.test(v));
+	}
+
 	// VALIDATOR CLASS DEFINITION
 	// ==========================
 
@@ -60,7 +64,7 @@
 			// minchecked: 'Te weinig opties geselecteerd',
 			email: 'Geef een geldig e-mail adres. Bijvoorbeeld fred@domain.com',
 			req: 'Dit is een verplicht veld',
-			onereq: 'Kies een van bovenstaande opties',
+			onereq: 'Kies een van de opties',
 			number: 'Voer een geldig nummer in',
 			postal: 'Deze postcode is niet goed. Gebruik geen spatie. Bijvoorbeeld 1234AB',
 			digits: 'Gebruik alleen cijfers. Punten, komma\'s en streepjes zijn niet toegestaan.',
@@ -152,6 +156,9 @@
 		date: function($el) {
 			var pcFormat = /^(0[1-9]|[12][0-9]|3[01])([-])(0[1-9]|1[012])\2(19|20)\d\d$/;
 			var v = $el.val();
+			if (isEmpty(v)) {
+				return true;
+			}
 			if (!pcFormat.test(v)) {
 				return false;
 			} else {
@@ -381,7 +388,18 @@
 
 	Validator.prototype.onSubmit = function (e) {
 		this.validate();
-		if (this.isIncomplete() || this.hasErrors()) e.preventDefault();
+		if (this.isIncomplete() || this.hasErrors()) {
+			e.preventDefault();
+			var $el = $('#errorhandle');
+			if ($el.length > 0) {
+				$el.removeClass('hidden');
+				$('html, body').animate({
+					scrollTop: 0
+				}, 1000);
+			}
+		} else {
+			$('#errorhandle').addClass('hidden');
+		}
 	}
 
 	Validator.prototype.toggleSubmit = function () {
