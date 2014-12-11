@@ -344,7 +344,12 @@
 
 		this.defer($el, function () {
 			var $group = $el.closest('.form-group');
-			var $block = $group.find('.help-block.with-errors');
+			var $block;
+			if ($group.hasClass('form-group-inline')) {
+				$block = $group.parents('.form-group').find('.help-block.with-errors-inline');
+			} else {
+				$block = $group.find('.help-block.with-errors');
+			}
 			var errors = $el.data('bs.validator.errors');
 
 			if (!errors.length) return;
@@ -363,7 +368,12 @@
 
 	Validator.prototype.clearErrors = function ($el) {
 		var $group = $el.closest('.form-group');
-		var $block = $group.find('.help-block.with-errors');
+		var $block;
+		if ($group.hasClass('form-group-inline')) {
+			$block = $group.parents('.form-group').find('.help-block.with-errors-inline');
+		} else {
+			$block = $group.find('.help-block.with-errors');
+		}
 
 		$block.html($block.data('bs.validator.originalContent'));
 		$group.removeClass('has-error');
@@ -375,16 +385,6 @@
 		}
 		var method = this.options.hidden ? ":input:enabled" : ":input:enabled:visible";
 		var result = !!this.$element.find(method).filter(fieldErrors).length;
-/****************************************
-		var $el = $('#errorhandle');
-		if ($el.length > 0) {
-			if (result) {
-				$el.removeClass('hidden');
-			} else {
-				$el.addClass('hidden');
-			}
-		}
-******************************************/
 		return result;
 	}
 
@@ -397,16 +397,6 @@
 
 		var method = this.options.hidden ? ':input[required]:enabled' : ':input[required]:enabled:visible';
 		var result = !!this.$element.find(method).filter(fieldIncomplete).length;
-/****************************************
-		var $el = $('#errorhandle');
-		if ($el.length > 0) {
-			if (result) {
-				$el.removeClass('hidden');
-			} else {
-				$el.addClass('hidden');
-			}
-		}
-******************************************/
 		return result;
 	}
 
