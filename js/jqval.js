@@ -373,7 +373,7 @@
 		function fieldErrors() {
 			return !!($(this).data('bs.validator.errors') || []).length;
 		}
-		var method = this.options.hidden ? ':input:enabled' : ':input:enabled:visible';
+		var method = this.options.hidden ? ":input:enabled" : ":input:enabled:visible";
 		var result = !!this.$element.find(method).filter(fieldErrors).length;
 /****************************************
 		var $el = $('#errorhandle');
