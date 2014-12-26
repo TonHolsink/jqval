@@ -312,7 +312,7 @@
 		}
 
 		$.each(Validator.VALIDATORS, $.proxy(function (key, validator) {
-			if (($el.data(key) || key == 'native') && !validator.call(this, $el)) {
+			if (($el.data('valtype') && $el.data('valtype').match(new RegExp('\\b'+key+'\\b')) || $el.data(key) || key == 'native') && !validator.call(this, $el)) {
 				var error = getErrorMessage(key)
 				!~errors.indexOf(error) && errors.push(error);
 			}

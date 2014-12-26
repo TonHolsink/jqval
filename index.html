@@ -26,14 +26,14 @@
 				<div class="formErrorMsg text-danger hidden"><strong>Er zitten fouten in het formulier</strong></div>
 				<div class="form-group">
 					<label for="inputName" class="control-label">Req</label>
-					<input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" data-req="req">
+					<input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" data-valtype="req">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="inputTwitter" class="control-label">Native pattern and maxlength</label>
 					<div class="input-group">
 						<span class="input-group-addon">@</span>
-						<input type="text" pattern="^([_A-z0-9]){3,}$" maxlength="20" class="form-control" id="inputTwitter" placeholder="1000hz" data-req="req">
+						<input type="text" pattern="^([_A-z0-9]){3,}$" maxlength="20" class="form-control" id="inputTwitter" placeholder="1000hz" data-valtype="req">
 					</div>
 					<span class="help-block with-errors">Up to 20 letters, numbers and underscores</span>
 				</div>
@@ -54,23 +54,23 @@
 				</div>
 				<div class="form-group">
 					<label for="inputEmail" class="control-label">Email native</label>
-					<input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" data-req="req">
+					<input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" data-valtype="req">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="inputEmail2" class="control-label">Email</label>
-					<input class="form-control" data-email="email" id="inputEmail2" placeholder="Email" data-req="req">
+					<input class="form-control" id="inputEmail2" placeholder="Email" data-valtype="req email">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword" class="control-label">Match and minlength (Password)</label>
 					<div class="form-inline row">
 						<div class="form-group col-sm-6">
-							<input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" data-req="req">
+							<input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" data-valtype="req">
 							<span class="help-block">Minimum of 6 characters</span>
 						</div>
 						<div class="form-group col-sm-6">
-							<input type="password" class="form-control" id="inputPasswordConfirm" data-match="inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" data-req="req">
+							<input type="password" class="form-control" id="inputPasswordConfirm" data-match="inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" data-valtype="req">
 							<div class="help-block with-errors"></div>
 						</div>
 					</div>
@@ -91,7 +91,7 @@
 					<label class="control-label">Onereq</label>
 					<div class="radio">
 						<label>
-							<input type="radio" name="underwear" data-onereq="onereq">
+							<input type="radio" name="underwear" data-valtype="onereq">
 							Boxers
 						</label>
 					</div>
@@ -107,7 +107,7 @@
 					<label class="control-label">Req (checkbox) and custom data-error</label>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" id="terms" data-error="Before you wreck yourself" data-req="req">
+							<input type="checkbox" id="terms" data-error="Before you wreck yourself" data-valtype="req">
 							Check yourself
 						</label>
 						<div class="help-block with-errors"></div>
@@ -135,57 +135,57 @@
 -->
 				<div class="form-group">
 					<label for="number" class="control-label">Number</label>
-					<input class="form-control" data-number="number" id="number" placeholder="Number" data-req="req">
+					<input class="form-control" id="number" placeholder="Number" data-valtype="req number">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="postal" class="control-label">Postal</label>
-					<input class="form-control" data-postal="postal" id="postal" data-req="req">
+					<input class="form-control" id="postal" data-valtype="req postal">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="digits" class="control-label">Digits</label>
-					<input class="form-control" data-digits="digits" id="digits" data-req="req">
+					<input class="form-control" id="digits" data-valtype="req digits">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="alpha" class="control-label">Alpha</label>
-					<input class="form-control" data-alpha="alpha" id="alpha" data-req="req">
+					<input class="form-control" id="alpha" data-valtype="req alpha">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="date" class="control-label">Date</label>
-					<input class="form-control" data-date="date" id="date" data-req="req">
+					<input class="form-control" id="date" data-valtype="req date">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="phone" class="control-label">Phone</label>
-					<input class="form-control" data-phone="phone" id="phone" data-req="req">
+					<input class="form-control" id="phone" data-valtype="req phone">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="url" class="control-label">Url</label>
-					<input class="form-control" data-url="url" id="url" data-req="req">
+					<input class="form-control" id="url" data-valtype="req url">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="bsn" class="control-label">Bsn</label>
-					<input class="form-control" data-bsn="bsn" id="bsn">
+					<input class="form-control" data-valtype="bsn" id="bsn">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="ip" class="control-label">ip-adres</label>
-					<input class="form-control" data-ip="ip" id="ip">
+					<input class="form-control" data-valtype="ip" id="ip">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="amount" class="control-label">Amount</label>
-					<input class="form-control" data-amount="amount" id="amount">
+					<input class="form-control" data-valtype="amount" id="amount">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
 					<label for="domesticaccountnr" class="control-label">domesticaccountnr</label>
-					<input class="form-control" data-domesticaccountnr="domesticaccountnr" id="domesticaccountnr">
+					<input class="form-control" data-valtype="domesticaccountnr" id="domesticaccountnr">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
@@ -194,7 +194,7 @@
 				</div>
 				<div class="form-group">
 					<label for="iban" class="control-label">iban</label>
-					<input class="form-control" data-iban="iban" id="iban">
+					<input class="form-control" data-valtype="iban" id="iban">
 					<div class="help-block with-errors"></div>
 				</div>
 				<div class="form-group">
@@ -204,7 +204,7 @@
 				</div>
 				<div class="form-group">
 					<label for="selection" class="control-label">selection</label>
-					<select data-selection="selection" class="form-control" id="selection">
+					<select data-valtype="selection" class="form-control" id="selection">
 						<option value="">Maak een keuze...</option>
 						<option value="volvo">Volvo</option>
 						<option value="saab">Saab</option>
